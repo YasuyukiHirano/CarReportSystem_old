@@ -7,5 +7,32 @@ using System.Threading.Tasks;
 
 namespace CarReportSystem
 {
+    class CarReport
+    {
+        //作成日
+        public DateTime CreateDate { get; set; }
+        //記録者
+        public string Author { get; set; }
+        //メーカー
+        public CarMeker Maker { get; set; }
+        //車名
+        public string Name { get; set; }
+        //レポート
+        public string Report { get; set; }
+        //画像
+        public Image image { get; set; }
 
+
+        //メーカー
+        public enum CarMeker
+        {
+            DEFAULT,
+            トヨタ,
+            日産,
+            ホンダ,
+            スバル,
+            外車,
+            その他
+        }
+    }
 }
