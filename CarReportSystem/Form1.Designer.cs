@@ -45,7 +45,6 @@
             this.cbName = new System.Windows.Forms.ComboBox();
             this.tbReport = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.btImageOpen = new System.Windows.Forms.Button();
             this.btImageDelete = new System.Windows.Forms.Button();
             this.btdgvadd = new System.Windows.Forms.Button();
             this.btdgvFix = new System.Windows.Forms.Button();
@@ -55,10 +54,11 @@
             this.btdgvClose = new System.Windows.Forms.Button();
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.dgvCarData = new System.Windows.Forms.DataGridView();
-            this.ofdOpenImage = new System.Windows.Forms.OpenFileDialog();
             this.ofdOpenData = new System.Windows.Forms.OpenFileDialog();
             this.sfdSaveData = new System.Windows.Forms.SaveFileDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ofdOpenImage = new System.Windows.Forms.OpenFileDialog();
+            this.btOpenImage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarData)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -200,12 +200,6 @@
             // cbRecorder
             // 
             this.cbRecorder.FormattingEnabled = true;
-            this.cbRecorder.Items.AddRange(new object[] {
-            "エモリユウキ",
-            "エモリユユウキ",
-            "エモリユユユウキ",
-            "エモリユユユユウキ",
-            "エモリユユユユユウキ"});
             this.cbRecorder.Location = new System.Drawing.Point(119, 62);
             this.cbRecorder.Name = "cbRecorder";
             this.cbRecorder.Size = new System.Drawing.Size(328, 20);
@@ -237,16 +231,6 @@
             this.label7.TabIndex = 1;
             this.label7.Text = "画像:";
             // 
-            // btImageOpen
-            // 
-            this.btImageOpen.Location = new System.Drawing.Point(569, 12);
-            this.btImageOpen.Name = "btImageOpen";
-            this.btImageOpen.Size = new System.Drawing.Size(75, 30);
-            this.btImageOpen.TabIndex = 5;
-            this.btImageOpen.Text = "開く";
-            this.btImageOpen.UseVisualStyleBackColor = true;
-            this.btImageOpen.Click += new System.EventHandler(this.btImageOpen_Click);
-            // 
             // btImageDelete
             // 
             this.btImageDelete.Location = new System.Drawing.Point(664, 11);
@@ -275,6 +259,7 @@
             this.btdgvFix.TabIndex = 8;
             this.btdgvFix.Text = "修正";
             this.btdgvFix.UseVisualStyleBackColor = true;
+            this.btdgvFix.Click += new System.EventHandler(this.btdgvFix_Click);
             // 
             // btdgvDelete
             // 
@@ -284,6 +269,7 @@
             this.btdgvDelete.TabIndex = 9;
             this.btdgvDelete.Text = "削除";
             this.btdgvDelete.UseVisualStyleBackColor = true;
+            this.btdgvDelete.Click += new System.EventHandler(this.btdgvDelete_Click);
             // 
             // btdvgOpen
             // 
@@ -313,9 +299,11 @@
             this.btdgvClose.TabIndex = 12;
             this.btdgvClose.Text = "終了";
             this.btdgvClose.UseVisualStyleBackColor = true;
+            this.btdgvClose.Click += new System.EventHandler(this.btdgvClose_Click);
             // 
             // pbImage
             // 
+            this.pbImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.pbImage.Location = new System.Drawing.Point(479, 47);
             this.pbImage.Name = "pbImage";
             this.pbImage.Size = new System.Drawing.Size(260, 235);
@@ -324,16 +312,15 @@
             // 
             // dgvCarData
             // 
+            this.dgvCarData.AllowUserToAddRows = false;
             this.dgvCarData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCarData.Location = new System.Drawing.Point(119, 307);
+            this.dgvCarData.MultiSelect = false;
             this.dgvCarData.Name = "dgvCarData";
             this.dgvCarData.RowTemplate.Height = 21;
+            this.dgvCarData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCarData.Size = new System.Drawing.Size(620, 200);
             this.dgvCarData.TabIndex = 14;
-            // 
-            // ofdOpenImage
-            // 
-            this.ofdOpenImage.FileName = "openFileDialog1";
             // 
             // ofdOpenData
             // 
@@ -353,11 +340,26 @@
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             // 
+            // ofdOpenImage
+            // 
+            this.ofdOpenImage.FileName = "openFileDialog1";
+            // 
+            // btOpenImage
+            // 
+            this.btOpenImage.Location = new System.Drawing.Point(570, 11);
+            this.btOpenImage.Name = "btOpenImage";
+            this.btOpenImage.Size = new System.Drawing.Size(75, 30);
+            this.btOpenImage.TabIndex = 0;
+            this.btOpenImage.Text = "開く";
+            this.btOpenImage.UseVisualStyleBackColor = true;
+            this.btOpenImage.Click += new System.EventHandler(this.btOpenImage_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(753, 555);
+            this.Controls.Add(this.btOpenImage);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvCarData);
             this.Controls.Add(this.pbImage);
@@ -368,7 +370,6 @@
             this.Controls.Add(this.btdgvFix);
             this.Controls.Add(this.btdgvadd);
             this.Controls.Add(this.btImageDelete);
-            this.Controls.Add(this.btImageOpen);
             this.Controls.Add(this.tbReport);
             this.Controls.Add(this.cbName);
             this.Controls.Add(this.cbRecorder);
@@ -410,7 +411,6 @@
         private System.Windows.Forms.ComboBox cbName;
         private System.Windows.Forms.TextBox tbReport;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button btImageOpen;
         private System.Windows.Forms.Button btImageDelete;
         private System.Windows.Forms.Button btdgvadd;
         private System.Windows.Forms.Button btdgvFix;
@@ -420,10 +420,11 @@
         private System.Windows.Forms.Button btdgvClose;
         private System.Windows.Forms.PictureBox pbImage;
         private System.Windows.Forms.DataGridView dgvCarData;
-        private System.Windows.Forms.OpenFileDialog ofdOpenImage;
         private System.Windows.Forms.OpenFileDialog ofdOpenData;
         private System.Windows.Forms.SaveFileDialog sfdSaveData;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.OpenFileDialog ofdOpenImage;
+        private System.Windows.Forms.Button btOpenImage;
     }
 }
 
